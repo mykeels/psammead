@@ -1,4 +1,4 @@
-  /* eslint-disable */
+/* eslint-disable */
 const path = require('path');
 const React = require('react');
 const renderer = require('react-test-renderer');

@@ -1,4 +1,5 @@
-const React = require("react");
+/* eslint-disable */
+const React = require('react');
 
 module.exports = function Component() {
   return <div>fixture1</div>;

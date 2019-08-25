@@ -1,1 +1,2 @@
-module.exports = require('./lib/babel');
+/* eslint-disable */
+module.exports = require('./dist/babel');

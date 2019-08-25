@@ -9,7 +9,7 @@ module.exports = {
     path: path.join(__dirname, 'example', 'dist'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
   },
   module: {
     rules: [
@@ -20,17 +20,14 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: [
-              ['es2015', { modules: false }],
-              'react',
-            ],
+            presets: [['es2015', { modules: false }], 'react'],
             plugins: [
               'syntax-dynamic-import',
               'transform-class-properties',
               'transform-object-assign',
               require.resolve('./babel'),
             ],
-          }
+          },
         },
       },
     ],
@@ -43,7 +40,12 @@ module.exports = {
   },
   plugins: [
     new ReactLoadablePlugin({
-      filename:  path.resolve(__dirname, 'example', 'dist', 'react-loadable.json'),
+      filename: path.resolve(
+        __dirname,
+        'example',
+        'dist',
+        'react-loadable.json',
+      ),
     }),
-  ]
+  ],
 };

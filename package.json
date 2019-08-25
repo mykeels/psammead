@@ -27,7 +27,7 @@
     "test": "npm run test:lint && npm run test:lint:css && npm run test:unit && npm run test:packages",
     "test:chromatic": "chromatic test run --storybook-build-dir=storybook_dist || true",
     "test:packages": "lerna run test",
-    "test:lint": "eslint --ext .js,jsx,json ./packages ./scripts",
+    "test:lint": "eslint --fix --ext .js,jsx,json ./packages ./scripts",
     "test:lint:css": "stylelint 'packages/**/*.js' 'packages/**/*.jsx' 'scripts/**/*.js'",
     "test:unit": "npm run build && jest --verbose --coverage",
     "test:unit:watch": "npm run build && jest --verbose --coverage --watch",
@@ -139,7 +139,8 @@
       "!**/.eslintrc.js",
       "!**/dist/**",
       "!**/esm/**",
-      "!**/moment-timezone-include/tz/**"
+      "!**/moment-timezone-include/tz/**",
+      "!**/react-loadable/**"
     ],
     "testMatch": [
       "**/*.test.{js,jsx}"

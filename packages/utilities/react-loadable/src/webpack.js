@@ -1,19 +1,24 @@
-'use strict';
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
 function buildManifest(compiler, compilation) {
-  let context = compiler.options.context;
-  let manifest = {};
+  const { context } = compiler.options;
+  const manifest = {};
 
   compilation.chunks.forEach(chunk => {
     chunk.files.forEach(file => {
       chunk.forEachModule(module => {
-        let id = module.id;
-        let name = typeof module.libIdent === 'function' ? module.libIdent({ context }) : null;
-        let publicPath = url.resolve(compilation.outputOptions.publicPath || '', file);
-        
+        const { id } = module;
+        const name =
+          typeof module.libIdent === 'function'
+            ? module.libIdent({ context })
+            : null;
+        const publicPath = url.resolve(
+          compilation.outputOptions.publicPath || '',
+          file,
+        );
+
         let currentModule = module;
         if (module.constructor.name === 'ConcatenatedModule') {
           currentModule = module.rootModule;
@@ -38,7 +43,7 @@ class ReactLoadablePlugin {
   apply(compiler) {
     compiler.plugin('emit', (compilation, callback) => {
       const manifest = buildManifest(compiler, compilation);
-      var json = JSON.stringify(manifest, null, 2);
+      const json = JSON.stringify(manifest, null, 2);
       const outputDirectory = path.dirname(this.filename);
       try {
         fs.mkdirSync(outputDirectory);

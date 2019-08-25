@@ -15,12 +15,10 @@
   "files": [
     "babel.js",
     "webpack.js",
-    "lib/**"
+    "dist/**"
   ],
   "scripts": {
-    "test": "jest --coverage",
-    "build": "babel src -d lib",
-    "start": "npm run build && webpack && babel-node example/server.js"
+    "start": "webpack && babel-node example/server.js"
   },
   "dependencies": {
     "prop-types": "^15.5.0"
@@ -37,9 +35,6 @@
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.1",
     "flow-bin": "^0.41.0",
-    "jest": "^21.2.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0",
     "webpack": "^3.6.0"
   },

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable */
+import React from 'react';
 
 export default class FixtureComponent extends React.Component {
   render() {

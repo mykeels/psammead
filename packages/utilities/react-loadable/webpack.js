@@ -1,1 +1,2 @@
-module.exports = require('./lib/webpack');
+/* eslint-disable */
+module.exports = require('./dist/webpack');

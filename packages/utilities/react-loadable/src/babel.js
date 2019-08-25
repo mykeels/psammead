@@ -1,18 +1,19 @@
+/* eslint-disable */
 export default function({ types: t, template }) {
   return {
     visitor: {
       ImportDeclaration(path) {
-        let source = path.node.source.value;
+        const source = path.node.source.value;
         if (source !== 'react-loadable') return;
 
-        let defaultSpecifier = path.get('specifiers').find(specifier => {
+        const defaultSpecifier = path.get('specifiers').find(specifier => {
           return specifier.isImportDefaultSpecifier();
         });
 
         if (!defaultSpecifier) return;
 
-        let bindingName = defaultSpecifier.node.local.name;
-        let binding = path.scope.getBinding(bindingName);
+        const bindingName = defaultSpecifier.node.local.name;
+        const binding = path.scope.getBinding(bindingName);
 
         binding.referencePaths.forEach(refPath => {
           let callExpression = refPath.parentPath;
@@ -27,17 +28,17 @@ export default function({ types: t, template }) {
 
           if (!callExpression.isCallExpression()) return;
 
-          let args = callExpression.get('arguments');
+          const args = callExpression.get('arguments');
           if (args.length !== 1) throw callExpression.error;
 
-          let options = args[0];
+          const options = args[0];
           if (!options.isObjectExpression()) return;
 
-          let properties = options.get('properties');
-          let propertiesMap = {};
+          const properties = options.get('properties');
+          const propertiesMap = {};
 
           properties.forEach(property => {
-            let key = property.get('key');
+            const key = property.get('key');
             propertiesMap[key.node.name] = property;
           });
 
@@ -45,13 +46,13 @@ export default function({ types: t, template }) {
             return;
           }
 
-          let loaderMethod = propertiesMap.loader.get('value');
-          let dynamicImports = [];
+          const loaderMethod = propertiesMap.loader.get('value');
+          const dynamicImports = [];
 
           loaderMethod.traverse({
             Import(path) {
               dynamicImports.push(path.parentPath);
-            }
+            },
           });
 
           if (!dynamicImports.length) return;
@@ -65,15 +66,15 @@ export default function({ types: t, template }) {
                   dynamicImports.map(dynamicImport => {
                     return t.callExpression(
                       t.memberExpression(
-                      	t.identifier('require'),
+                        t.identifier('require'),
                         t.identifier('resolveWeak'),
                       ),
                       [dynamicImport.get('arguments')[0].node],
-                    )
-                  })
-                )
-              )
-            )
+                    );
+                  }),
+                ),
+              ),
+            ),
           );
 
           propertiesMap.loader.insertAfter(
@@ -82,12 +83,12 @@ export default function({ types: t, template }) {
               t.arrayExpression(
                 dynamicImports.map(dynamicImport => {
                   return dynamicImport.get('arguments')[0].node;
-                })
-              )
-            )
+                }),
+              ),
+            ),
           );
         });
-      }
-    }
+      },
+    },
   };
 }

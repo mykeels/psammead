@@ -18,6 +18,7 @@
     "dist/**"
   ],
   "scripts": {
+    "test": "jest --coverage",
     "start": "webpack && babel-node example/server.js"
   },
   "dependencies": {

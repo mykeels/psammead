@@ -1,6 +1,6 @@
 .idea
 node_modules
 *.log
-lib
+dist
 coverage
 example/dist

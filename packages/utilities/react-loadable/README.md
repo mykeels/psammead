@@ -1,3 +1,15 @@
+NB: This package has been forked from https://github.com/jamiebuilds/react-loadable due to the need to patch for React 16.9.0. All infomation below is copied verbatim from that package. In contributing to this fork we request you read our contributing guide and follow our code of conduct.
+
+### [Contributing](https://github.com/bbc/psammead/blob/latest/CONTRIBUTING.md)
+
+Psammead is completely open source. We are grateful for any contributions, whether they be new components, bug fixes or general improvements. Please see our primary contributing guide which can be found at [the root of the Psammead respository](https://github.com/bbc/psammead/blob/latest/CONTRIBUTING.md).
+
+### [Code of Conduct](https://github.com/bbc/psammead/blob/latest/CODE_OF_CONDUCT.md)
+
+We welcome feedback and help on this work. By participating in this project, you agree to abide by the [code of conduct](https://github.com/bbc/psammead/blob/latest/CODE_OF_CONDUCT.md). Please take a moment to read it.
+
+---
+
 ![React Loadable](http://thejameskyle.com/img/react-loadable-header.png)
 
 > A higher order component for loading components with dynamic imports.

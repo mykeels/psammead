@@ -3,6 +3,8 @@ const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 const shell = require('shelljs');
 
+const tempDirName = `temp${new Date().getTime()}`
+
 const prompts = {
   name: 'foo-bar-component',
   description: 'This is a test',
@@ -27,11 +29,12 @@ describe('pacakge generator', () => {
 
     return helpers
       .run(path.join(__dirname, '.'))
-      .inDir(path.join(__dirname, './temp'))
+      .inDir(path.join(__dirname, `./${tempDirName}`))
       .withPrompts(prompts);
   });
+  
   afterEach(() => {
-    shell.rm('-rf', path.join(__dirname, './temp'));
+    shell.rm('-rf', path.join(__dirname, `./${tempDirName}`));
   });
 
   it('should generate pacakge with prompts', () => {

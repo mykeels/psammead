@@ -12,7 +12,7 @@ const prompts = {
   authorEmail: 'foobar@foobar.com',
 };
 
-const componentDir = './temp/packages/components/psammead-foo-bar-component';
+const componentDir = `./${tempDirName}/packages/components/psammead-foo-bar-component`;
 
 const tempFiles = [
   `${componentDir}/README.md`,
@@ -32,7 +32,7 @@ describe('pacakge generator', () => {
       .inDir(path.join(__dirname, `./${tempDirName}`))
       .withPrompts(prompts);
   });
-  
+
   afterEach(() => {
     shell.rm('-rf', path.join(__dirname, `./${tempDirName}`));
   });

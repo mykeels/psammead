@@ -32,10 +32,10 @@ setup-git:
 publish:
 	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 	cd packages/components/psammead-grid
-	npm unpublish psammead-grid@1.0.0-alpha.0
+	npm unpublish psammead-grid@1.0.0
 
 change-scanner:
 	npm run changeScanner;
 
 talos:
-	node scripts/talos/cli ${ARGS};
+	node scripts/talos/cli ${ARGS};	

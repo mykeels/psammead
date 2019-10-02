@@ -31,7 +31,8 @@ setup-git:
 
 publish:
 	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-	npm unpublish psammead-grid
+	cd packages/components/psammead-grid
+	npm unpublish psammead-grid@1.0.0-alpha.0
 
 change-scanner:
 	npm run changeScanner;
